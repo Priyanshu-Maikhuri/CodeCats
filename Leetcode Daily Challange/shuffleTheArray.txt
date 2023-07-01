@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+        int l = 1;
+        for(int i=n; i<2*n; i++){
+            if(l==i)    break;
+            nums.insert(nums.begin()+l, nums[i]);
+            nums.erase(nums.begin()+i+1);
+            l+=2;
+        }
+        return nums;
+    }
+};
