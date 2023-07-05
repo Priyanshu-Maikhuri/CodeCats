@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        // int maxProfit = 0;
+        // for(int i=0; i<prices.size()-1; i++){
+        //     int temp = *max_element(begin(prices)+i+1, end(prices));
+        //     if(prices[i] < temp){
+        //         temp = temp - prices[i];
+        //         maxProfit = max(temp, maxProfit);
+        //     }
+        // }
+        // return maxProfit;
+
+        int size = prices.size()-1, maxPrice = INT_MIN;
+        vector<int> maxj(size);
+        int k = size - 1;
+        for(int i=size; i>0; i--){
+            maxPrice = max(maxPrice, prices[i]);
+            maxj[k] = maxPrice;
+            k--;
+        }
+        maxPrice = 0;
+        for(int i=0; i<size; i++){
+            int diff = maxj[i]-prices[i];
+            if(diff > 0)
+                maxPrice = max(diff, maxPrice);
+        }
+        return maxPrice;
+    }
+};

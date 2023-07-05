@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int h=0, vol=0;
+        for(int i=0; i<height.size(); i++){
+            if(h<=height[i]){
+                h = height[i];
+            }
+            else{
+                if(i+1>=height.size())  break;
+                int laterHigh = *max_element(begin(height)+i+1, end(height));
+                if(laterHigh >= h)
+                    vol += (h-height[i]);
+                else if(laterHigh>0){
+                    h = laterHigh;
+                    if(height[i]<h)
+                        vol += (h-height[i]);
+                }
+            }  
+        }
+        return vol;
+    }
+};
