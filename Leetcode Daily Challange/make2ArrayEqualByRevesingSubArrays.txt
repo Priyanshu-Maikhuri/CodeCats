@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        map<int, int> x;
+        for(auto i:target){
+            x[i]++;
+        }
+        for(auto i:arr){
+            if(x.find(i)!=x.end()){
+                x[i]--;
+                if(x[i]==0)
+                    x.erase(i);
+            }
+            else return false;
+        }
+        return true;
+    }
+};
