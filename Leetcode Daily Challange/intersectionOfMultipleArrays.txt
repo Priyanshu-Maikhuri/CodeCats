@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> intersection(vector<vector<int>>& nums) {
+        map<int, int> elements;
+        for(auto row:nums){
+            for(auto item:row){
+                elements[item]++;
+            }
+        }
+        vector<int> res;
+        for(auto itr:elements){
+            if(itr.second == nums.size()){
+                res.push_back(itr.first);
+            }
+        }
+        return res;
+    }
+};
