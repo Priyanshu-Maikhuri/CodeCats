@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        set<int> positiveInt;
+        for(auto i:nums){
+            if(i>0)
+                positiveInt.insert(i);
+        }
+        int number=1;
+        for(auto i:positiveInt){
+            if(i!=number)
+                return number;
+            number++;
+        }
+        return number;
+    }
+};
