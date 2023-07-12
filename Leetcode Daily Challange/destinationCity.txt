@@ -1,0 +1,14 @@
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        map<string, string> routes;
+        for(auto r:paths){
+            routes.insert({r[0], r[1]});
+        }
+        for(auto i:routes){
+            if(!routes.count(i.second))
+                return i.second;
+        }
+        return "";
+    }
+};
