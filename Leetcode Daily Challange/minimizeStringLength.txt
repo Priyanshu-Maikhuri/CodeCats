@@ -1,0 +1,7 @@
+class Solution {
+public:
+    int minimizedStringLength(string s) {
+        set<char> str(s.begin(), s.end());
+        return str.size();
+    }
+};
