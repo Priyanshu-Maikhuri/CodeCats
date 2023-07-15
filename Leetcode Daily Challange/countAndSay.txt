@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        if(n==1){   //base case, for n=1 say is "1"
+            return "1";
+        }
+        string s = countAndSay(n-1);    //recurse till n=1
+        string res;
+        int count=1;    //count of first element will be 1 till second(if any)
+        for(int i=1; i<s.length(); i++){
+            if(s[i]!=s[i-1]){   //in case current character is different than the previous one
+                                //then, add previous character's count and itself to the say in end
+                res += to_string(count) + s[i-1];
+                count=1;    //make count zero for previous character
+            }
+            else count++;    //increment count for current character
+        }
+        res += to_string(count) + s[s.length()-1];  //add say for the last character in s
+        return res;
+    }
+};

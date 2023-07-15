@@ -1,0 +1,30 @@
+//lexicographically smallest order among all possible results with the left to right way in input
+//monotonic stack/increasing order + frequency + seen/visited array
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        unordered_map<char, int> freq;
+        unordered_map<char, bool> visited;
+        string res;
+        for(auto i:s){
+            freq[i]++;
+            visited[i] = false;
+        }
+        for(auto i:s){
+            if(visited[i]){ //skip if character is already visited
+                freq[i]--;
+                continue;
+            }
+            //if character is smaller than the last char in res then remove from res till opposite (monotonic stack) 
+            while(!res.empty() && res.back()>i && freq[res.back()]){
+                visited[res.back()] = false;
+                res.pop_back();
+            }
+            res += i;
+            visited[i] = true;
+            freq[i]--;
+        }
+        return res;
+    }
+};
