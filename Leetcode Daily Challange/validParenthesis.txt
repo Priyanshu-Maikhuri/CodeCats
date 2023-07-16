@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isValid(string str) {
+        stack<char> input;
+        for(auto i:str){
+            if(i==')' || i==']' || i=='}'){
+                if(input.size()==0)
+                    return false;
+                if((i==')' && input.top()!='(')||(i==']' && input.top()!='[')||(i=='}' && input.top()!='{'))
+                    return false;
+                input.pop();
+            }
+            else input.push(i);
+        }
+        if(input.size()>0)
+            return false;
+        return true;
+    }
+};

@@ -1,0 +1,36 @@
+// point centric approach,       - - - i - - - 
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string res;
+        int maxL=-1, maxR=1;
+        for(int i=0, maxLen=0; i<s.length(); i++){
+            int l=i, r=i;
+            while(l>=0 && r<s.length() && s[l]==s[r]){ //for odd length palindrome
+                int len = r-l + 1;
+                if(len>maxLen){
+                    maxLen = len;
+                    maxL = l;
+                    maxR = r;
+                }    
+                l--;
+                r++;
+            }
+            l=i;
+            r=i+1;
+            while(l>=0 && r<s.length() && s[l]==s[r]){ //for even length palindrome
+                int len = r-l + 1;
+                if(len>maxLen){
+                    maxLen = len;
+                    maxL = l;
+                    maxR = r;
+                }    
+                l--;
+                r++;
+            }
+        }
+        res.insert(0, s, maxL, maxR-maxL+1);
+        return res;
+    }
+};
