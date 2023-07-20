@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string res;
+        res+=path[0];
+        for(int i=1; i<path.length(); ++i){
+            if(path[i]=='/' && path[i-1]=='/')  continue;
+            if(path[i]=='.' && path[i+1]=='/'){
+                i++;
+            }
+            else
+                
+        }
+        cout<<res.back();
+        if(res.size()==1)   return res;
+        if(res.back()=='/') res = res.substr(0, res.length()-1);
+        return res;
+    }
+};
