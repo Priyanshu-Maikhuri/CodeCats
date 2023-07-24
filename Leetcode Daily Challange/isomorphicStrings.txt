@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s.length()!=t.length())
+            return false;
+        
+        int a[256] = {0}, b[256] = {0};
+
+        for(int i=0;i<s.length();i++){
+            if(a[s[i]]==0 and b[t[i]]==0){
+                a[s[i]] = t[i]; //map s to t
+                b[t[i]] = s[i]; //map t to s
+            }
+            else    if(a[s[i]] != t[i])
+                return false; //if one had appeared before but other hadn't
+        }
+        return true;
+    }
+};

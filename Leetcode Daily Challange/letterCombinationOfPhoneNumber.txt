@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res, letters{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        int num, length = digits.length();
+        while(length--){
+            num = digits[length]-48;
+            string str = letters[num-2];
+            if(res.size()==0)
+                for(int i=0; i<str.length(); ++i){
+                    res.push_back("");
+                    res[res.size()-1].push_back(str[i]);
+                }
+            
+            else{
+                int l = res.size(), pos = 0;
+                for(int i=0; i<l; ++i){
+                    res.push_back("");
+                    string s = str[1] + res[i];
+                    // cout<<s<<", ";
+                    res[res.size()-1].push_back(s);
+                    if(i==l-1){
+                        pos++;
+                        i=-1;
+                    }
+                    if(pos==str.length())   break;
+                }
+                res.erase(res.begin(), res.begin()+l);
+            }
+        } 
+        return res;
+    }
+};
