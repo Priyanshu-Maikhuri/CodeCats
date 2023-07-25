@@ -1,0 +1,32 @@
+class Solution {
+    int findInString(string str, char ch, int from ){
+        for(; from<str.length(); ++from){
+            if(str[from] == ch)
+                break;
+        }
+        return from;
+    }
+public:
+    int repeatedStringMatch(string a, string b) {
+        int start = a.find(b[0]), count = 1;
+        if(start == string::npos)
+            return -1;
+        int first = start;
+        for(int i=0; i<b.length(); ++i){
+            if(start == a.length()){
+                ++count;
+                start = 0;
+            }
+            if(b[i] != a[start]){
+                start = findInString(a, b[0], first+1);
+                if(start == a.length())
+                    return -1;
+                first = start;
+                count = 1;
+                i=0;  
+            }
+            ++start;
+        }
+        return count;
+    }
+};
